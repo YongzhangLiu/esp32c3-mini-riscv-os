@@ -6,9 +6,11 @@ void lib_delay(volatile int count)
 	while (count--);
 }
 
+extern int uart_tx_one_char(uint8_t c);
+
 int lib_putc(char ch) {
-	while ((*UART_LSR & UART_LSR_EMPTY_MASK) == 0);
-	return *UART_THR = ch;
+	uart_tx_one_char(ch);
+    return 0;
 }
 
 void lib_puts(char *s) {
