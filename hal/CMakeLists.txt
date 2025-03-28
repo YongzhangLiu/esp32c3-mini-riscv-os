@@ -46,7 +46,8 @@ target_include_directories(hal PUBLIC
     ${config_dir}
     )
 
-target_sources(hal PRIVATE
+# Change to PUBLIC to make it visible to other targets
+target_sources(hal PUBLIC
     ${esp_hal_components_srcdir}/components/soc/${target}/gpio_periph.c
     ${esp_hal_components_srcdir}/components/hal/gpio_hal.c
     ${esp_hal_components_srcdir}/components/hal/wdt_hal_iram.c

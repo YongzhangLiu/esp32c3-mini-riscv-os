@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 extern int uart_tx_one_char(uint8_t c);
 
