@@ -5,6 +5,7 @@ list(APPEND srcs
     "vectors.S"
     "syscalls.c"
     "panic.c"
+    "interrupt.c"
     )
 
 add_library(common STATIC ${srcs})

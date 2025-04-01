@@ -142,5 +142,17 @@ _panic_handler:
     .weak _interrupt_handler
     .type _interrupt_handler, @function
 _interrupt_handler:
+	/* save registers & mepc to stack */
+    save_general_regs
+    save_mepc
+
+    /* call _global_interrupt_handler */
+    csrr a0, mcause
+    call _global_interrupt_handler
+
+    /* restore registers & mepc from stack */
+    restore_mepc
+    restore_general_regs
+    /* exit, this will also re-enable the interrupts */
     mret
     .size  _interrupt_handler, .-_interrupt_handler
