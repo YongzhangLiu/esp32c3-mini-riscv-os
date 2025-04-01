@@ -1,14 +1,17 @@
 #include "lib.h"
 
+/* note: this delay is not accurate, but enough for demonstrating main loop functioning */
 void lib_delay(volatile int count)
 {
-	count *= 50000;
+	count *= 10000;
 	while (count--);
 }
 
+extern int uart_tx_one_char(uint8_t c);
+
 int lib_putc(char ch) {
-	while ((*UART_LSR & UART_LSR_EMPTY_MASK) == 0);
-	return *UART_THR = ch;
+	uart_tx_one_char(ch);
+	return 0;
 }
 
 void lib_puts(char *s) {
@@ -38,6 +41,7 @@ int lib_vsnprintf(char * out, size_t n, const char* s, va_list vl)
                     out[pos] = 'x';
                 }
                 pos++;
+                break;
             }
             case 'x': {
                 long num = longarg ? va_arg(vl, long) : va_arg(vl, int);
@@ -126,7 +130,7 @@ static char out_buf[1000]; // buffer for lib_vprintf()
 int lib_vprintf(const char* s, va_list vl)
 {
     int res = lib_vsnprintf(NULL, -1, s, vl);
-    if (res+1 >= sizeof(out_buf)) {
+    if (res+1 >= (int)(sizeof(out_buf))) {
         lib_puts("error: lib_vprintf() output string size overflow\n");
         while(1) {}
     }
