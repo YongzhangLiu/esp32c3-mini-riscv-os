@@ -174,3 +174,21 @@ strtol = 0x40000454;
 strtoul = 0x40000458;
 
 uart_tx_one_char = 0x40000068;
+
+/***************************************
+ Group interrupts
+ ***************************************/
+
+/* Functions */
+esprv_intc_int_set_priority = 0x400005e0;
+esprv_intc_int_set_threshold = 0x400005e4;
+esprv_intc_int_enable = 0x400005e8;
+esprv_intc_int_disable = 0x400005ec;
+esprv_intc_int_set_type = 0x400005f0;
+intr_matrix_set = 0x400005f4;
+ets_intr_lock = 0x400005f8;
+ets_intr_unlock = 0x400005fc;
+PROVIDE( intr_handler_set = 0x40000600 );
+ets_isr_attach = 0x40000604;
+ets_isr_mask = 0x40000608;
+ets_isr_unmask = 0x4000060c;

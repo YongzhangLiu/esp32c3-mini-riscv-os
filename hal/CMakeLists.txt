@@ -44,6 +44,8 @@ target_include_directories(hal PUBLIC
     ${esp_hal_components_srcdir}/components/esp_rom/include
     ${esp_hal_components_srcdir}/components/esp_rom/${target}
     ${config_dir}
+    ${esp_hal_components_srcdir}/components/esp_hw_support/include
+    ${esp_hal_components_srcdir}/components/riscv/include
     )
 
 # Change to PUBLIC to make it visible to other targets
@@ -51,6 +53,8 @@ target_sources(hal PUBLIC
     ${esp_hal_components_srcdir}/components/soc/${target}/gpio_periph.c
     ${esp_hal_components_srcdir}/components/hal/gpio_hal.c
     ${esp_hal_components_srcdir}/components/hal/wdt_hal_iram.c
+    ${esp_hal_components_srcdir}/components/esp_hw_support/port/${target}/systimer.c
+    ${esp_hal_components_srcdir}/components/hal/systimer_hal.c
     )
 
 # FIXME: hal component can't be compiled with -Wall -Wextra -Werror:
