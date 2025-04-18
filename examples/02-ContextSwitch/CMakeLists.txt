@@ -14,10 +14,11 @@ add_executable(mini_os
     os.c
     main.c
 )
-
+# include dirs
 add_subdirectory(${ROOT_DIR}/common common)
 add_subdirectory(${ROOT_DIR}/hal hal)
 
+# link dirs
 target_link_libraries(mini_os PRIVATE common hal)
 
 target_compile_options(mini_os PRIVATE -g -Og)
@@ -25,7 +26,9 @@ target_link_options(mini_os PRIVATE -g)
 
 target_compile_options(mini_os PRIVATE -Wall -Werror -Wextra)
 
+# 引入自定义 CMake 函数
 include(${ROOT_DIR}/utils.cmake)
+
 add_linker_scripts(mini_os)
 add_map_file(mini_os mini_os.map)
 make_binary(mini_os mini_os.bin)
