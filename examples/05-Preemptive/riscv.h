@@ -55,7 +55,7 @@ static inline reg_t r_mhartid()
 #define MSTATUS_MPP_M (3 << 11)
 #define MSTATUS_MPP_S (1 << 11)
 #define MSTATUS_MPP_U (0 << 11)
-#define MSTATUS_MIE (1 << 3)    // machine-mode interrupt enable.
+// #define MSTATUS_MIE (1 << 3)    // machine-mode interrupt enable.
 
 static inline reg_t r_mstatus()
 {
