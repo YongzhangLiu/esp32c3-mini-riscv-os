@@ -146,10 +146,31 @@ _interrupt_handler:
     save_general_regs
     save_mepc
 
+    /* save current task top */
+    la t0, task_stack_top
+    sw sp, 0(t0)
+
+    /* switch to isr stack */
+    la t0, isr_stack_top
+    lw sp, 0(t0)
+
     /* call _global_interrupt_handler */
     csrr a0, mcause
     call _global_interrupt_handler
 
+    /* check if context switch is requested */
+    la t0, ctx_swtch_req
+    lw t0, 0(t0)
+    beq t0, zero, skip_sched
+
+    /* context switch */
+    call os_sched
+
+    /* switch to task stack */
+    la t0, task_stack_top
+    lw sp, 0(t0)
+
+skip_sched:
     /* restore registers & mepc from stack */
     restore_mepc
     restore_general_regs
