@@ -9,12 +9,10 @@ set(CMAKE_ASM_COMPILE_OBJECT "<CMAKE_ASM_COMPILER> <DEFINES> <INCLUDES> <FLAGS> 
 project(mini_os)
 
 add_executable(mini_os
-    sys.s
     lib.c
     timer.c
     os.c
     main.c
-    trap.c
     user.c
     task.c
 )
