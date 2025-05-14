@@ -63,10 +63,10 @@ void timer_init()
     /* enable counter */
     systimer_hal_enable_counter(&systimer_hal, SYSTIMER_COUNTER_OS_TICK);
 
-    /* map timer interrupt to cpu interrupt line 31 */
+    /* map timer interrupt to cpu interrupt line 1 */
     REG_WRITE(DR_REG_INTERRUPT_BASE + 4 * SYSTIMER_INTR_SRC_ID, SYSTIMER_INTR_CPU_INT_NUM);
 
-    /* enable cpu interrupt line 31 */
+    /* enable cpu interrupt line 1 */
     rv_utils_intr_enable(1 << SYSTIMER_INTR_CPU_INT_NUM);
     esprv_intc_int_set_priority(SYSTIMER_INTR_CPU_INT_NUM, 1);
 

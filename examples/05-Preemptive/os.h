@@ -7,7 +7,7 @@
 #include "timer.h"
 
 extern void user_init();
-extern void os_kernel();
-extern int  os_main(void);
-
+int  os_main(void);
+void os_sched(void);
+void os_start(void);
 #endif
