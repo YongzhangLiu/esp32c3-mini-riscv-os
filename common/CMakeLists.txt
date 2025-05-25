@@ -5,9 +5,8 @@ list(APPEND srcs
     "vectors.S"
     "syscalls.c"
     "panic.c"
-    
+    "interrupt.c"
     )
-# "interrupt.c"
 add_library(common STATIC ${srcs})
 target_include_directories(common PUBLIC)
 set_target_properties(common PROPERTIES C_STANDARD 11)

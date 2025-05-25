@@ -3,7 +3,7 @@
 1. Make sure you have a `riscv-none-elf-gcc` toolchain installed and added to PATH.
 2. Build the example with CMake:
    ```bash
-   cd examples/mini_os
+   cd examples/04-TimerInterrupt
    mkdir build
    cmake -B build -D target=esp32c3 -G Ninja .
    cmake --build build
